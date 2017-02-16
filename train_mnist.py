@@ -38,8 +38,7 @@ n_units = 1000
 # Prepare dataset
 print('load MNIST dataset')
 mnist = data.load_mnist_data()
-mnist['data'] = mnist['data'].astype(np.float32)
-mnist['data'] /= 255
+mnist['data'] = np.where(mnist['data']>0, 1, -1).astype(np.float32, copy=False)
 mnist['target'] = mnist['target'].astype(np.int32)
 
 N = 60000
