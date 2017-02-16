@@ -11,11 +11,11 @@ class MnistMLP(chainer.Chain):
     """
     def __init__(self, n_in, n_units, n_out):
         super(MnistMLP, self).__init__(
-            l1=link_binary_linear.BinaryLinear(n_in, n_units),
+            l1=link_binary_linear.BinaryLinear(n_in, n_units, nobias=True),
             b1=L.BatchNormalization(n_units),
-            l2=link_binary_linear.BinaryLinear(n_units, n_units),
+            l2=link_binary_linear.BinaryLinear(n_units, n_units, nobias=True),
             b2=L.BatchNormalization(n_units),
-            l3=link_binary_linear.BinaryLinear(n_units, n_out),
+            l3=link_binary_linear.BinaryLinear(n_units, n_out, nobias=True),
             b3=L.BatchNormalization(n_out),
         )
         self.train = True
